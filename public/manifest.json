@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Random Jokes Generator",
+  "name": "React App to generate random jokes",
   "icons": [
     {
       "src": "favicon.ico",
