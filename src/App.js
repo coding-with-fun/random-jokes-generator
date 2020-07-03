@@ -29,15 +29,16 @@ function App() {
         <input
           type="text"
           id="fname"
-          value={fname}
+          placeholder={fname}
           onChange={(e) => setFname(e.target.value)}
-          style={{ marginRight: "10px" }}
+          className="AppItems"
         />
         <input
           type="text"
           id="lname"
-          value={lname}
+          placeholder={lname}
           onChange={(e) => setLname(e.target.value)}
+          className="AppItems"
         />
       </div>
       <button
