@@ -13,7 +13,6 @@ function App() {
     fetch(url)
       .then((res) => res.json())
       .then((res2) => {
-        console.log(res2);
         setJoke(res2.value.joke);
       });
   };
