@@ -20,6 +20,7 @@ function App() {
   };
   useEffect(() => {
     newJoke(fname, lname);
+    // eslint-disable-next-line
   }, []);
   return (
     <div className="App">
