@@ -8,8 +8,7 @@ function App() {
   const [fname, setFname] = useState("John");
   const [lname, setLname] = useState("Doe");
 
-  const url = `http://api.icndb.com/jokes/random?firstName=${fname}&lastName=${lname}`;
-
+  const url = `https://api.icndb.com/jokes/random?firstName=${fname}&lastName=${lname}`;
   const newJoke = () => {
     fetch(url)
       .then((res) => res.json())
