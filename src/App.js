@@ -1,56 +1,48 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import axios from "axios";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [joke, setJoke] = useState("Loading...");
-  const [fname, setFname] = useState("John");
-  const [lname, setLname] = useState("Doe");
+	const [num, setNum] = useState([1, 2, 3]);
+	const [currentNum, setCurrentNum] = useState(0);
 
-  const url = `https://api.icndb.com/jokes/random?firstName=${fname}&lastName=${lname}`;
-  
-  const newJoke = async () => {
-    const {
-      data: {
-        value: { joke },
-      },
-    } = await axios.get(url);
-    console.log(joke);
-    setJoke(joke);
-  };
-  
-  useEffect(() => {
-    newJoke();
-    // eslint-disable-next-line
-  }, []);
-  
-  return (
-    <div className="App">
-      <h2 className="AppItems">Random Jokes Generator</h2>
-      <div className="AppItems">
-        <input
-          type="text"
-          id="fname"
-          placeholder={fname}
-          onChange={(e) => setFname(e.target.value)}
-          className="AppItems"
-        />
-        <input
-          type="text"
-          id="lname"
-          placeholder={lname}
-          onChange={(e) => setLname(e.target.value)}
-          className="AppItems"
-        />
-      </div>
-      <button className="btn btn-primary AppItems" onClick={() => newJoke()}>
-        Get another joke
-      </button>
-      <h4 className="AppItems">{joke}</h4>
-    </div>
-  );
+	useEffect(() => {
+		setCurrentNum(num[0]);
+	}, [num]);
+
+	const onNext = () => {
+		const index = num.indexOf(currentNum);
+		if (index === num.length - 1) {
+			setCurrentNum(num[0]);
+		} else {
+			setCurrentNum(num[index + 1]);
+		}
+	};
+
+	const onPrev = () => {
+		const index = num.indexOf(currentNum);
+		if (index === 0) {
+			setCurrentNum(num[num.length - 1]);
+		} else {
+			setCurrentNum(num[index - 1]);
+		}
+	};
+
+	const addNewNumber = () => {
+		const lastNum = num[num.length - 1];
+		setNum([...num, lastNum + 1]);
+		alert(`Succesfully added ${lastNum + 1}`);
+	};
+
+	return (
+		<div className="App">
+			<div>
+				<button onClick={onPrev}>Prev</button>
+				{currentNum}
+				<button onClick={onNext}>Next</button>
+			</div>
+			<button onClick={addNewNumber}>Add new number</button>
+		</div>
+	);
 }
 
 export default App;
